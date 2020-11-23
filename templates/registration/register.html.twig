@@ -1,0 +1,29 @@
+{% extends 'layouts/auth-template.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="p-5">
+    <div class="text-center">
+        <h1 class="h4 text-gray-900 mb-4">Take this cute dog for a date!</h1>
+    </div>
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <h3>Register</h3>
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+        <br>
+        {{ form_row(registrationForm.agreeTerms) }}
+        <br>
+
+        <button type="submit" class="btn btn-primary">Register</button>
+    {{ form_end(registrationForm) }}
+
+    <a href="{{ path('app_login') }}" class="btn">You have an account ? Login</a>
+{% endblock %}
